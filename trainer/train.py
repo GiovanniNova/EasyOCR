@@ -257,9 +257,9 @@ def train(opt, show_number = 2, amp=False):
                 head = f'{"Ground Truth":25s} | {"Prediction":25s} | Confidence Score & T/F'
                 predicted_result_log = f'{dashed_line}\n{head}\n{dashed_line}\n'
                 
-                #show_number = min(show_number, len(labels))
+                show_max = min(len(labels)-show_number, len(labels))
                 
-                start = random.randint(0,len(labels) - show_number )    
+                start = random.randint(0, show_max)    
                 for gt, pred, confidence in zip(labels[start:start+show_number], preds[start:start+show_number], confidence_score[start:start+show_number]):
                     if 'Attn' in opt.Prediction:
                         gt = gt[:gt.find('[s]')]
